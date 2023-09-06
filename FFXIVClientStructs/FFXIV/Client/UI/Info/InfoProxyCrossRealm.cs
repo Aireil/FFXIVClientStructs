@@ -65,7 +65,7 @@ public unsafe partial struct CrossRealmGroup {
     [FixedSizeArray<CrossRealmMember>(8)]
     [FieldOffset(0x08)] public fixed byte GroupMembers[8 * 0x58];
 
-    [Obsolete("Use GroupMembersSpan")]
+    [Obsolete("Use GroupMembersSpan and make sure not to iterate further than GroupMemberCount, using foreach on GroupMembersSpan will now include residual data from people that left the group")]
     public ReadOnlySpan<CrossRealmMember> GroupMemberSpan {
         get {
             fixed (byte* gp = GroupMembers) {
